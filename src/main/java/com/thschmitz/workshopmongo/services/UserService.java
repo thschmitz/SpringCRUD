@@ -23,7 +23,7 @@ public class UserService {
 	
 	public User findById(String id) {
 		Optional<User> obj = repository.findById(id);
-	
+		
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found!"));
 	}
 	
