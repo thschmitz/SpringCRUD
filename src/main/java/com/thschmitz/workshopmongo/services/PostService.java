@@ -1,5 +1,6 @@
 package com.thschmitz.workshopmongo.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +26,10 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		return repository.searchTitle(text);
+	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000); // To fazendo isso daqui para ele pegar meia noite do proximo dia e nao meia noite do dia que queremos pq dai se eu enviar um dado do dia ele nao vai passar na condicao <= maxDate
+		return repository.fullSearch(text, minDate, maxDate);
 	}
 }
